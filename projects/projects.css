@@ -1,0 +1,110 @@
+/* Body */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+}
+
+/* Hero Section Layout */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem; /* more breathing room */
+  text-align: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 4rem auto;
+}
+
+/* Hero Image */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-image img {
+  max-width: 90%; /* slightly larger image */
+  height: auto;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+/* Hero Text */
+.hero-text {
+  background: #f7f5eb;
+  padding: 2rem 3rem; /* more padding */
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  max-width: 800px;
+}
+
+.project-title {
+  font-size: 2.6rem; /* larger title */
+  margin-bottom: 1rem;
+}
+
+.project-description {
+  font-family: "Caveat", cursive;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-size: 1.5rem; /* bigger text */
+  line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+  }
+  .hero-image img {
+    max-width: 100%;
+  }
+  .hero-text {
+    padding: 1.5rem;
+  }
+  .project-title {
+    font-size: 2rem;
+  }
+  .project-description {
+    font-size: 1.3rem;
+  }
+}
+
+/* Redirect Button */
+.projects-redirect {
+  right: 20px;
+  display: flex;
+  align-items: center;
+  background: #e9e9ea;
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  padding: 4px 20px;
+  margin-left: 10px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.projects-redirect a {
+  text-decoration: none;
+  color: #555;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+}
+
+.projects-redirect:hover {
+  background: #007aff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+
+.projects-redirect a:hover {
+  color: #ffffff;
+}

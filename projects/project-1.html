@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Analytics Tableau Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="/css/desktop.css">
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.self === window.top) { // only if not in iframe
+    const header = document.createElement("div");
+    header.className = "window-header";
+    header.innerHTML = `
+      <div class="window-buttons">
+        <span class="close" title="Close"></span>
+        <span class="minimize" title="Minimize"></span>
+        <span class="maximize" title="Open project"></span>
+      </div>
+      <div class="safari-url-bar">${document.title}</div>
+      <div class="projects-redirect"> <a href="../projectsmain.html" > More Projects</a> </div>
+    `;
+    document.body.prepend(header);
+  }
+});
+
+</script>
+</head>
+<body>
+  <div class='tableauPlaceholder' id='viz1760259507454' style='position: relative'>
+    <noscript>
+        <a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Go&#47;GoogleAnalytics_17602589416250&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a>
+    </noscript>
+    <object class='tableauViz'  style='display:none;'>
+        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+        <param name='embed_code_version' value='3' /> 
+        <param name='site_root' value='' />
+        <param name='name' value='GoogleAnalytics_17602589416250&#47;Dashboard1' />
+        <param name='tabs' value='no' />
+        <param name='toolbar' value='yes' />
+        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Go&#47;GoogleAnalytics_17602589416250&#47;Dashboard1&#47;1.png' /> 
+        <param name='animate_transition' value='yes' />
+        <param name='display_static_image' value='yes' />
+        <param name='display_spinner' value='yes' />
+        <param name='display_overlay' value='yes' />
+        <param name='display_count' value='yes' />
+        <param name='language' value='fr-FR' />
+    </object>
+        </div>                
+        <script type='text/javascript'>                    
+        var divElement = document.getElementById('viz1760259507454');                    
+        var vizElement = divElement.getElementsByTagName('object')[0];                    
+        if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1366px';vizElement.style.height='1495px';} 
+        else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1366px';vizElement.style.height='1495px';} 
+        else { vizElement.style.width='100%';vizElement.style.height='1827px';}                     
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                   
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+        </script>
+
+<script> document.addEventListener("DOMContentLoaded", () => {
+  // Select both close and maximize buttons
+  const buttons = document.querySelectorAll(".window-header .close, .window-header .maximize");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      if (window.self !== window.top) {
+        // Inside an iframe: tell parent to hide this project window
+        window.parent.postMessage({ type: "closeProject", projectId: document.title }, "*");
+      } else {
+        // Standalone: maybe just go back to some index or hide body
+        window.location.href = "/"; // or your main desktop
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

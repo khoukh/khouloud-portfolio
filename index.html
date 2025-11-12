@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khouloud Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/desktop.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <!-- iMessage Intro -->
+  <div class="imessage" id="imessage-section">
+    <div id="chat"></div>
+  </div>
+
+  <!-- Desktop Section -->
+  <section class="desktop hidden" id="desktop-section">
+    <div class="top-bar">
+  <div class="top-left">
+    <img src="assets/images/logo.png" alt="Logo" class="apple-logo">
+    <a href="projectsmain.html" class="menu-item active">Projects</a>
+    <a href="aboutme.html" class="menu-item">About Me</a>
+    <a href="/assets/PDFs/Khouloud-Aouaini-Resume.pdf" class="menu-item">CV</a>
+    <a href="contact.html" class="menu-item">Contact</a>
+    <span class="menu-item">Help</span>
+  </div>
+  <div class="top-right">
+    <img src="assets/icons/wifi.png" alt="Wi-Fi">
+    <img src="assets/icons/battery.png" alt="Battery">
+    <span id="clock"></span>
+  </div>
+</div>
+
+    <!-- Dock -->
+    <div class="dock">
+      <div class="dock-icon" data-app="Finder"><img src="assets/images/finder.png" alt="Finder"></div>
+      <div class="dock-icon" data-app="Safari"><img src="assets/images/safari-icon.png" alt="Safari"></div>
+      <div class="dock-icon" data-app="Notes"><img src="assets/images/notes.png" alt="Notes"></div>
+      <div class="dock-icon" data-app="Messages" id="messagesApp"> <img src="assets/images/messages-icon.png" alt="Messages"></div>
+      <div class="dock-icon" data-app="Trash"><img src="assets/images/trash.png" alt="Trash"></div>
+    </div>
+
+
+  <!-- Custom cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Sounds -->
+  <audio id="sendSound" src="assets/sounds/send.mp3" preload="auto"></audio>
+  <audio id="receiveSound" src="assets/sounds/receive.mp3" preload="auto"></audio>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/imessage.js"></script>
+  <script src="js/desktop.js"></script>
+  <script src="js/windows.js"></script>
+  <script src="js/bubbles.js"></script>
+</body>
+</html>

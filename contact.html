@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contact</title>
+  <style>
+
+  body {
+    background: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+  }
+
+  /* Top bar */
+.window-header {
+  height: 32px;
+  background: #f3f3f3;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  cursor: grab;
+}
+
+.window-buttons {
+  display: flex;
+  gap: 6px;
+  margin-right: 10px;
+}
+
+.window-buttons span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.window-buttons .close { background: #ff5f57; }
+.window-buttons .minimize { background: #ffbd2e; }
+.window-buttons .maximize { background: #28c840; }
+.safari-url-bar {
+  flex: 1;
+  background: #e9e9ea;
+  border-radius: 6px;
+  padding: 4px 12px;   /* less vertical padding */
+  font-size: 14px;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 8px;    /* spacing from traffic lights */
+  margin-top: 0;       
+  margin-bottom: 0;
+  height: 24px;         /* set explicit height */
+  box-sizing: border-box;
+  align-items: center;    /* vertical centering */ 
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.title-text {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin-right: 40px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  padding: 60px;
+  gap: 20px;
+}
+
+.left-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form {
+  flex: 1;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.form input, .form textarea {
+  width: 90%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.form textarea {
+  height: 120px;
+  resize: none;
+}
+
+.form button {
+  padding: 10px;
+  background: #007aff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: #005ecb;
+}
+
+.linkedin-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.linkedin-card img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.linkedin-card .info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.linkedin-card .info p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.linkedin-card .info a {
+  font-size: 14px;
+  color: #007aff;
+  text-decoration: none;
+}
+
+.linkedin-card .info a:hover {
+  text-decoration: underline;
+}
+
+.typeform-container {
+  flex: 1.2;
+  background: #fafafa;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+.typeform-container h2 {
+  font-size: 18px;
+  padding: 20px;
+  color: #111;
+}
+
+.typeform-container > div {
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+</head>
+<body>
+  <div class="content">
+      <!-- Left: Email form + LinkedIn card -->
+      <div class="left-side">
+        <div class="form">
+          <h2>You can send me a quick message?</h2>
+          <form id="contactForm">
+            <input type="text" name="from_name" placeholder="Your Name" required>
+            <input type="email" name="reply_to" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </div>
+
+        <div class="linkedin-card">
+          <img src="/assets/images/profile.jpeg" alt="Profile">
+          <div class="info">
+            <h3>Khouloud Aouaini</h3>
+            <p>Data & Marketing Analyst</p>
+            <a href="https://www.linkedin.com/in/khouloud-aouaini" target="_blank">Connect on LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Typeform -->
+      <div class="typeform-container">
+        <h2>Or maybe fill the form?</h2>
+        <div data-tf-live="01K6MJ1RX9FXYBN5TBRKVSJQTT"></div>
+        <script src="//embed.typeform.com/next/embed.js"></script>
+      </div>
+    </div>
+  <footer style="
+  text-align:center;
+  padding: 20px;
+  font-size: 13px;
+  color: #555;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+">
+  <p>Let’s make something great together — I promise I’ll bring snacks.</p>
+</footer>
+
+  <!-- EmailJS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("xZViw3-siRiL6ujmw");
+    })();
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      emailjs.sendForm("service_d7zgof1", "template_v52nba9", this)
+        .then(() => {
+          alert("Message sent ✅");
+          this.reset();
+        }, (error) => {
+          alert("Oops! Something went wrong ❌: " + error.text);
+        });
+    });
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.self === window.top) {
+    const header = document.createElement("div");
+    header.className = "window-header";
+    header.innerHTML = `
+      <div class="window-buttons">
+        <span class="close" title="Close"></span>
+        <span class="minimize" title="Minimize"></span>
+        <span class="maximize" title="Open project"></span>
+      </div>
+      <div class="safari-url-bar">${document.title}</div>
+    `;
+    document.body.prepend(header);
+  }
+
+  // Add button events
+  const buttons = document.querySelectorAll(".window-header .close, .window-header .maximize");
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      if (window.self !== window.top) {
+        window.parent.postMessage({ type: "closeProject", projectId: document.title }, "*");
+      } else {
+        window.location.href = "/";
+      }
+    });
+  });
+});
+  </script>
+</body>
+</html>
+
