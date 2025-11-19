@@ -5,46 +5,62 @@ window.addEventListener("load", () => {
   const sendSound = document.getElementById("sendSound");
   const receiveSound = document.getElementById("receiveSound");
 
-  // Track whether audio has been unlocked
   let audioUnlocked = false;
 
-  // Create sound hint dynamically
+  /* -----------------------------------------------------
+     🔊 CREATE SOUND HINT
+  ----------------------------------------------------- */
   const soundHint = document.createElement("div");
   soundHint.id = "sound-hint";
-  soundHint.textContent = "🔊 Tap to enable sound";
+  soundHint.textContent = "🔊 Tap anywhere to enable sound";
   document.body.appendChild(soundHint);
 
-  // Unlock audio on first interaction
+  // Small fade-in so it looks intentional
+  requestAnimationFrame(() => {
+    soundHint.classList.add("visible");
+  });
+
+  /* -----------------------------------------------------
+     🟡 UNLOCK AUDIO ON FIRST INTERACTION
+  ----------------------------------------------------- */
   window.addEventListener(
     "click",
     () => {
       audioUnlocked = true;
 
-      // HIDE HINT 👇👇👇
+      // Hide hint with fade-out
+      soundHint.classList.remove("visible");
       soundHint.classList.add("hidden");
 
-      // Unlock audio
-      sendSound.play().catch(() => {});
-      sendSound.pause();
-      receiveSound.play().catch(() => {});
-      receiveSound.pause();
+      // Attempt unlock sequence
+      [sendSound, receiveSound].forEach((snd) => {
+        snd.play().catch(() => {});
+        snd.pause();
+      });
     },
     { once: true }
   );
 
-  // Reset intro only on hard refresh
+  /* -----------------------------------------------------
+     🔄 RESET INTRO ONLY ON HARD REFRESH
+  ----------------------------------------------------- */
   const navEntries = performance.getEntriesByType("navigation");
   if (navEntries.length > 0 && navEntries[0].type === "reload") {
     sessionStorage.removeItem("introShown");
   }
 
+  /* -----------------------------------------------------
+     🎵 PLAY SOUND FUNCTION (GUARANTEED TO NOT BREAK)
+  ----------------------------------------------------- */
   function playSound(sound) {
-    if (audioUnlocked) {
-      sound.currentTime = 0;
-      sound.play().catch(() => {});
-    }
+    if (!audioUnlocked) return;
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
   }
 
+  /* -----------------------------------------------------
+     ✨ INTRO SEQUENCE
+  ----------------------------------------------------- */
   function startIntro() {
     let index = 0;
     const messages = [
@@ -55,54 +71,29 @@ window.addEventListener("load", () => {
 
     function showMessage() {
       if (index >= messages.length) {
-        const welcomeMsg = document.createElement("div");
-        welcomeMsg.classList.add("bubble", "me", "welcome");
-        welcomeMsg.textContent = "Sure, welcome to my workspace!";
-        chat.appendChild(welcomeMsg);
-
-        welcomeMsg.style.transform = "scale(0)";
-        welcomeMsg.style.transition = "transform 0.8s ease, opacity 0.8s ease";
-
-        setTimeout(() => {
-          welcomeMsg.style.transform = "scale(1.5)";
-          welcomeMsg.style.opacity = "1";
-          playSound(sendSound);
-        }, 50);
-
-        setTimeout(() => {
-          imessageSection.classList.add("fade-out");
-          setTimeout(() => {
-            imessageSection.classList.add("hidden");
-            desktopSection.classList.remove("hidden");
-          }, 800);
-        }, 1500);
-
-        sessionStorage.setItem("introShown", "true");
+        createWelcomeMessage();
         return;
       }
 
       const msg = document.createElement("div");
-      msg.classList.add("bubble", messages[index].from);
+      msg.className = `bubble ${messages[index].from}`;
       msg.textContent = messages[index].text;
+
       chat.appendChild(msg);
 
-      if (messages[index].from === "me") {
-        playSound(sendSound);
-      } else {
-        playSound(receiveSound);
-      }
+      if (messages[index].from === "me") playSound(sendSound);
+      else playSound(receiveSound);
 
       index++;
       setTimeout(showMessage, 1200);
     }
 
-    showMessage();
-  }
+    function createWelcomeMessage() {
+      const welcomeMsg = document.createElement("div");
+      welcomeMsg.classList.add("bubble", "me", "welcome");
+      welcomeMsg.textContent = "Sure, welcome to my workspace!";
+      chat.appendChild(welcomeMsg);
 
-  if (!sessionStorage.getItem("introShown")) {
-    startIntro();
-  } else {
-    imessageSection.classList.add("hidden");
-    desktopSection.classList.remove("hidden");
-  }
-});
+      welcomeMsg.style.transform = "scale(0.7)";
+      welcomeMsg.style.opacity = "0";
+      welcomeMsg.style.transition = "transform 0.9s ease, opacity 0.9s ease";
