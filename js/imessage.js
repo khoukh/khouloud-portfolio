@@ -5,10 +5,33 @@ window.addEventListener("load", () => {
   const sendSound = document.getElementById("sendSound");
   const receiveSound = document.getElementById("receiveSound");
 
-  // Detect reload → clear intro flag so it runs again
+  // Track whether audio has been unlocked
+  let audioUnlocked = false;
+
+  // Unlock audio on first interaction
+  window.addEventListener(
+    "click",
+    () => {
+      audioUnlocked = true;
+      sendSound.play().catch(() => {});
+      sendSound.pause();
+      receiveSound.play().catch(() => {});
+      receiveSound.pause();
+    },
+    { once: true }
+  );
+
+  // Reset intro only on hard refresh
   const navEntries = performance.getEntriesByType("navigation");
   if (navEntries.length > 0 && navEntries[0].type === "reload") {
     sessionStorage.removeItem("introShown");
+  }
+
+  function playSound(sound) {
+    if (audioUnlocked) {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    }
   }
 
   function startIntro() {
@@ -28,11 +51,11 @@ window.addEventListener("load", () => {
 
         welcomeMsg.style.transform = "scale(0)";
         welcomeMsg.style.transition = "transform 0.8s ease, opacity 0.8s ease";
+
         setTimeout(() => {
           welcomeMsg.style.transform = "scale(1.5)";
           welcomeMsg.style.opacity = "1";
-          sendSound.currentTime = 0;
-          sendSound.play();
+          playSound(sendSound);
         }, 50);
 
         setTimeout(() => {
@@ -43,7 +66,6 @@ window.addEventListener("load", () => {
           }, 800);
         }, 1500);
 
-        // Mark intro as shown (for this navigation session)
         sessionStorage.setItem("introShown", "true");
         return;
       }
@@ -54,28 +76,14 @@ window.addEventListener("load", () => {
       chat.appendChild(msg);
 
       if (messages[index].from === "me") {
-        sendSound.currentTime = 0;
-        sendSound.play();
+        playSound(sendSound);
       } else {
-        receiveSound.currentTime = 0;
-        receiveSound.play();
+        playSound(receiveSound);
       }
 
       index++;
       setTimeout(showMessage, 1200);
     }
-
-    // Unlock audio on first click
-    window.addEventListener(
-      "click",
-      () => {
-        sendSound.play().catch(() => {});
-        sendSound.pause();
-        receiveSound.play().catch(() => {});
-        receiveSound.pause();
-      },
-      { once: true }
-    );
 
     showMessage();
   }
