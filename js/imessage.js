@@ -18,6 +18,12 @@ window.addEventListener("load", () => {
   // Show it after a tiny delay so it's visible
   setTimeout(() => soundHint.classList.add("visible"), 50);
 
+  // Automatically hide the hint after 5 seconds
+  setTimeout(() => {
+    soundHint.classList.remove("visible");
+    soundHint.classList.add("hidden");
+  }, 5000);
+
   // -----------------------------------------------------
   // 🟡 UNLOCK AUDIO ON FIRST CLICK
   // -----------------------------------------------------
@@ -26,7 +32,7 @@ window.addEventListener("load", () => {
     () => {
       audioUnlocked = true;
 
-      // Hide the hint
+      // Hide the hint if it’s still visible
       soundHint.classList.remove("visible");
       soundHint.classList.add("hidden");
 
@@ -90,7 +96,6 @@ window.addEventListener("load", () => {
           }, 800);
         }, 1500);
 
-        // Mark intro as shown
         sessionStorage.setItem("introShown", "true");
         return;
       }
