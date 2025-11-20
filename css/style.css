@@ -80,7 +80,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,0.65);
-  color: rgba(255, 255, 255, 0.20);
+  color: rgba(255, 255, 255, 0.10);
   padding: 8px 12px;
   border-radius: 12px;
   font-size: 0.6rem;
