@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.self !== window.top) {
         window.parent.postMessage({ type: "closeProject", projectId: document.title }, "*");
       } else {
-        window.location.href = "/";
+        window.location.href = "index.html";
       }
     });
   });
